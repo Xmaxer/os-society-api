@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_03_190133) do
+ActiveRecord::Schema.define(version: 2020_06_06_105813) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "players", force: :cascade do |t|
+    t.string "username", limit: 20, null: false
+    t.datetime "join_date"
+    t.integer "rank", null: false
+    t.boolean "removed", null: false
+    t.string "previous_names", default: [], null: false, array: true
+    t.text "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["username"], name: "index_players_on_username", unique: true
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "username", limit: 20, null: false
@@ -21,6 +33,7 @@ ActiveRecord::Schema.define(version: 2020_06_03_190133) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "secret_key", null: false
+    t.index ["username"], name: "index_users_on_username", unique: true
   end
 
 end

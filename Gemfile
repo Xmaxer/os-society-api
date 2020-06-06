@@ -14,6 +14,7 @@ gem 'puma', '~> 4.1'
 # Use Redis adapter to run Action Cable in production
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
+gem 'search_object_graphql', '~> 0.3.1'
 gem 'bcrypt', '~> 3.1.7'
 gem 'graphql', '~> 1.10'
 gem 'jwt', '~> 2.2'
