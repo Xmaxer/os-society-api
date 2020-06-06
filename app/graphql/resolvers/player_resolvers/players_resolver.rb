@@ -18,7 +18,7 @@ module Resolvers
       end
 
       option :filter, type: Types::ObjectTypes::PlayerTypes::PlayerFilterType, with: :apply_filter
-      option :order, type: Types::ObjectTypes::PlayerTypes::PlayerOrderType, default: {by: "CREATED_AT", direction: "DESC"}, with: :apply_order
+      option :order, type: Types::ObjectTypes::PlayerTypes::PlayerOrderType, default: {order_by: "CREATED_AT", order: "DESC"}, with: :apply_order
       option :first, type: Int, default: 100, with: :apply_first
       option :skip, type: Int, default: 0, with: :apply_skip
 
@@ -27,7 +27,7 @@ module Resolvers
       type [Types::ObjectTypes::PlayerTypes::PlayerType], null: true
 
       def apply_order(scope, value)
-        scope.order(value[:by].downcase.to_sym => value[:direction].downcase.to_sym) if value[:by] && value[:direction]
+        scope = scope.order(value[:order_by].downcase.to_sym => value[:order].downcase.to_sym) if !value[:order].nil? and !value[:order_by].nil?
         context.scoped_context[:players] = scope
         scope
       end
