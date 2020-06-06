@@ -18,9 +18,10 @@ gem 'search_object_graphql', '~> 0.3.1'
 gem 'bcrypt', '~> 3.1.7'
 gem 'graphql', '~> 1.10'
 gem 'jwt', '~> 2.2'
-gem 'redis', '~> 4.1', '>= 4.1.3'
+gem 'redis', '~> 4.1'
 gem 'hiredis', '~> 0.6.3'
-gem 'rack-cors', '~> 1.1', '>= 1.1.1'
+gem 'rack-cors', '~> 1.1'
+gem 'faker', '~> 2.12'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
