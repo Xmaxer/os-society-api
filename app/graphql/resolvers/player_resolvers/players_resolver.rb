@@ -11,7 +11,11 @@ module Resolvers
         super(args)
       end
 
-      scope { Player.all }
+      scope do
+        players = Player.all
+        context.scoped_context[:players] = players
+        players
+      end
 
       option :filter, type: Types::ObjectTypes::PlayerTypes::PlayerFilterType, with: :apply_filter
       option :order, type: Types::ObjectTypes::PlayerTypes::PlayerOrderType, default: {by: "CREATED_AT", direction: "DESC"}, with: :apply_order
@@ -24,12 +28,16 @@ module Resolvers
 
       def apply_order(scope, value)
         scope.order(value[:by].downcase.to_sym => value[:direction].downcase.to_sym) if value[:by] && value[:direction]
+        context.scoped_context[:players] = scope
+        scope
       end
 
       def apply_filter(scope, value)
         scope = scope.where('lower(username) LIKE ?', "%#{value[:username_contains].downcase}%") if value[:username_contains]
         scope = scope.where('lower(array_to_string(previous_names, \',\')) LIKE ?', "%#{value[:previous_name_contains].downcase}%") if value[:previous_name_contains]
         scope = scope.where('lower(array_to_string(previous_names, \',\')) LIKE ? OR lower(username) LIKE ?', "%#{value[:username_or_previous_name_contains].downcase}%", "%#{value[:username_or_previous_name_contains].downcase}%") if value[:username_or_previous_name_contains]
+        scope = scope.where(rank: value[:rank_contains]) if value[:rank_contains]
+        context.scoped_context[:players] = scope
         scope
       end
 
