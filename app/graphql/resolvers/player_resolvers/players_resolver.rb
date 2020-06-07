@@ -42,7 +42,7 @@ module Resolvers
       end
 
       def apply_first(scope, value)
-        scope.limit(if value < 1 or value > 300
+        scope.limit(if value < 1 or value > 500
                       100
                     else
                       value
