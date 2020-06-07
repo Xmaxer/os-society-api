@@ -37,6 +37,8 @@ module Resolvers
         scope = scope.where('lower(array_to_string(previous_names, \',\')) LIKE ?', "%#{value[:previous_name_contains].downcase}%") if value[:previous_name_contains]
         scope = scope.where('lower(array_to_string(previous_names, \',\')) LIKE ? OR lower(username) LIKE ?', "%#{value[:username_or_previous_name_contains].downcase}%", "%#{value[:username_or_previous_name_contains].downcase}%") if value[:username_or_previous_name_contains]
         scope = scope.where(rank: value[:rank_contains]) if value[:rank_contains]
+        scope = scope.where('join_date < ?', value[:start_join_date]) if value[:start_join_date]
+        scope = scope.where('join_date > ?', value[:end_join_date]) if value[:end_join_date]
         context.scoped_context[:players] = scope
         scope
       end
