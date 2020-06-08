@@ -11,6 +11,7 @@ module Constants
     PLAYER_USERNAME_TOO_SHORT_ERROR = {code: 9, message: "Username too short (Minimum: %{count})"}
     PLAYER_USERNAME_TOO_LONG_ERROR = {code: 10, message: "Username too long (Maximum: %{count})"}
     PLAYER_JOIN_DATE_IN_FUTURE_ERROR = {code: 11, message: "Join date cannot be in the future."}
+    PLAYER_JOIN_DATE_NOT_PRESENT_ERROR = {code: 11, message: "Join date is required"}
     PLAYER_RANK_INVALID_ERROR = {code: 12, message: "Specified rank is invalid"}
     PLAYER_PREVIOUS_NAME_INVALID = {code: 13, message: "Previous name is invalid"}
     PLAYER_COMMENT_TOO_LONG_ERROR = {code: 15, message: "Comment is too long"}

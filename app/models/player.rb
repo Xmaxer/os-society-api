@@ -25,6 +25,10 @@ class Player < ApplicationRecord
   end
 
   def validate_date
+    unless join_date.present?
+      errors.add(:join_date, Constants::Errors::PLAYER_JOIN_DATE_NOT_PRESENT_ERROR[:message])
+    end
+
     if join_date.present? && join_date > DateTime.now
       errors.add(:join_date, Constants::Errors::PLAYER_JOIN_DATE_IN_FUTURE_ERROR[:message])
     end
