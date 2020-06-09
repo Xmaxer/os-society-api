@@ -12,7 +12,7 @@ class Player < ApplicationRecord
   def check_previous_names
     if previous_names.present? && !previous_names.nil? && previous_names.is_a?(Array)
       previous_names.each { |name|
-        if name.size > 20 || name.blank? || (name =~ /\A([a-zA-Z0-9\-_]+\s)*[a-zA-Z0-9\-_]+\Z/i).nil?
+        if name.size > 20 || name.blank? || (name =~ /\A([a-zA-Z0-9\-_]+\s)*[a-zA-Z0-9\-_]+\Z/i).nil? || previous_names.uniq! != nil
           errors.add(:previous_names, Constants::Errors::PLAYER_PREVIOUS_NAME_INVALID[:message])
         end
       }
