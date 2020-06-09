@@ -52,5 +52,4 @@ test:
 production:
   <<: *default
   database: os_society_api_production
-  username: os_society_api
-  password: <%= ENV['OS_SOCIETY_API_DATABASE_PASSWORD'] %>
+  database_url: <%= ENV['DATABASE_URL'] %>
