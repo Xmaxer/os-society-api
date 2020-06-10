@@ -4,10 +4,10 @@ module Resolvers
 
       description "Checks whether the login you're authenticated or not"
 
-      type Boolean, null: false
+      type Types::ObjectTypes::UserTypes::UserType, null: true
 
       def resolve
-        !context[:current_user].nil?
+        context[:current_user]
       end
     end
   end

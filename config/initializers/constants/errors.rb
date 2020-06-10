@@ -19,6 +19,8 @@ module Constants
     PLAYER_USERNAME_NOT_PRESENT_ERROR = {code: 17, message: "Username is required"}
     PLAYER_USERNAME_NOT_VALID_ERROR = {code: 18, message: "'%{value}' is not a valid username"}
     PLAYER_DOES_NOT_EXIST_ERROR = {code: 19, message: "Specified player does not exist"}
+    USER_CANNOT_EDIT_ANOTHER_ERROR = {code: 20, message: "You cannot edit details of another user"}
+    USER_DOES_NOT_EXIST_ERROR = {code: 20, message: "User doesn't exist"}
     AUTHENTICATION_USERNAME_INVALID_ERROR = {code: 40, message: "Invalid username"}
     AUTHENTICATION_PASSWORD_INVALID_ERROR = {code: 41, message: "Invalid password"}
     NOT_AUTHENTICATED_ERROR = {code: -1, message: "Not authenticated"}
