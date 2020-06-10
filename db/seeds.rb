@@ -13,7 +13,7 @@ content.shift
 content.each do |row|
   p row
   username = row[0]
-  join_date = row[1].nil? || row[1].empty? ? DateTime.now : DateTime.strptime(row[1], "%m/%d/%Y")
+  join_date = row[1].nil? || row[1].empty? ? DateTime.new(2016, 11, 27, 0, 0, 0) : DateTime.strptime(row[1], "%m/%d/%Y")
   rank = row[2].to_s[0].to_i
 
   if rank == 7
