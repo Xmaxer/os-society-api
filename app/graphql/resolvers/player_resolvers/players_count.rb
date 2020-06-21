@@ -1,6 +1,6 @@
 module Resolvers
   module PlayerResolvers
-    class PlayersCountResolver < Resolvers::BaseResolverAuthenticated
+    class PlayersCount < Resolvers::BaseResolverAuthenticated
 
       description "Counts the total number of players"
 

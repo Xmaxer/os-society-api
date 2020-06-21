@@ -4,7 +4,7 @@ class User < ApplicationRecord
   attr_accessor :current_token
   before_create :create_secret_key
 
-  validates :username, length: {in: 1..20, too_long: Constants::Errors::USER_USERNAME_TOO_LONG_ERROR[:message], too_short: Constants::Errors::USER_USERNAME_TOO_SHORT_ERROR[:message]}, presence: {message: Constants::Errors::USER_USERNAME_NOT_PRESENT_ERROR[:message]}, format: {with: /\A([a-zA-Z0-9\-_]+\s)*[a-zA-Z0-9\-_]+\Z/i, message: Constants::Errors::USER_USERNAME_NOT_VALID_ERROR[:message]}, uniqueness: {message: Constants::Errors::USER_USERNAME_ALREADY_EXISTS_ERROR[:message]}
+  validates :username, length: {in: 1..20, too_long: Constants::Errors::USER_USERNAME_TOO_LONG_ERROR[:message], too_short: Constants::Errors::USER_USERNAME_TOO_SHORT_ERROR[:message]}, presence: {message: Constants::Errors::USER_USERNAME_NOT_PRESENT_ERROR[:message]}, format: {with: /\A([a-zA-Z0-9\-_]+\s)*[a-zA-Z0-9\-_]+\Z/i, message: Constants::Errors::USER_USERNAME_NOT_VALID_ERROR[:message]}, uniqueness: {message: Constants::Errors::USER_USERNAME_ALREADY_EXISTS_ERROR[:message], case_sensitive: false}
   validates :password, length: {in: 6..30, too_long: Constants::Errors::USER_PASSWORD_TOO_LONG_ERROR[:message], too_short: Constants::Errors::USER_PASSWORD_TOO_SHORT_ERROR[:message]}, presence: {message: Constants::Errors::USER_PASSWORD_NOT_PRESENT_ERROR[:message]}
 
 

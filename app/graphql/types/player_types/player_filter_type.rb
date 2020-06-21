@@ -1,5 +1,4 @@
 module Types
-  module ObjectTypes
     module PlayerTypes
       class PlayerFilterType < BaseInputObject
         argument :username_contains, String, required: false, description: "Filter by username"
@@ -10,5 +9,4 @@ module Types
         argument :end_join_date, GraphQL::Types::ISO8601DateTime, required: false, description: "Filter by end join date"
       end
     end
-  end
 end

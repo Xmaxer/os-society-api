@@ -1,9 +1,10 @@
 module Types
   class MutationType < Types::BaseObject
+    field :deletePlayer, mutation: Mutations::PlayerMutations::DeletePlayer
+    field :createPlayer, mutation: Mutations::PlayerMutations::CreatePlayer
+    field :updatePlayer, mutation: Mutations::PlayerMutations::UpdatePlayer
     field :login, mutation: Mutations::AuthMutations::LoginMutation
     field :logout, mutation: Mutations::AuthMutations::LogoutMutation
-    field :player, mutation: Mutations::PlayerMutations::PlayerMutation
-    field :delete_player, mutation: Mutations::PlayerMutations::DeletePlayerMutation
-    field :user, mutation: Mutations::UserMutations::UserMutation
+    field :updateUser, mutation: Mutations::UserMutations::UpdateUser
   end
 end

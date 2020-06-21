@@ -1,5 +1,4 @@
 module Types
-  module ObjectTypes
     module PlayerTypes
       class PlayerOrderEnumType < Types::BaseEnum
         value "USERNAME"
@@ -10,5 +9,4 @@ module Types
         value "RANK"
       end
     end
-  end
 end

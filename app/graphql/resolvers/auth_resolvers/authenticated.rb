@@ -1,10 +1,10 @@
 module Resolvers
   module AuthResolvers
-    class AuthenticatedResolver < Resolvers::BaseResolver
+    class Authenticated < Resolvers::BaseResolver
 
       description "Checks whether the login you're authenticated or not"
 
-      type Types::ObjectTypes::UserTypes::UserType, null: true
+      type Types::UserTypes::UserType, null: true
 
       def resolve
         context[:current_user]

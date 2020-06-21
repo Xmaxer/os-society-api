@@ -1,5 +1,4 @@
 module Types
-  module ObjectTypes
     module UserTypes
       class UserType < BaseObject
         description "All the possible user data"
@@ -8,5 +7,4 @@ module Types
         field :reset_password, Boolean, null: false, description: "Whether the user needs a password reset or not"
       end
     end
-  end
 end

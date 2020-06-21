@@ -1,5 +1,4 @@
 module Types
-  module ObjectTypes
     module PlayerTypes
       class PlayerType < BaseObject
         description "All the possible player data"
@@ -13,5 +12,4 @@ module Types
         field :updated_at, GraphQL::Types::ISO8601DateTime, null: false, description: "The date this player record was updated"
       end
     end
-  end
 end

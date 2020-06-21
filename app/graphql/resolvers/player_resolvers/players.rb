@@ -1,6 +1,6 @@
 module Resolvers
   module PlayerResolvers
-    class PlayersResolver < Resolvers::BaseResolverAuthenticated
+    class Players < Resolvers::BaseResolverAuthenticated
 
       require 'search_object'
       require 'search_object/plugin/graphql'
@@ -17,14 +17,14 @@ module Resolvers
         players
       end
 
-      option :filter, type: Types::ObjectTypes::PlayerTypes::PlayerFilterType, with: :apply_filter
-      option :order, type: Types::ObjectTypes::PlayerTypes::PlayerOrderType, default: {order_by: "CREATED_AT", order: "DESC"}, with: :apply_order
+      option :filter, type: Types::PlayerTypes::PlayerFilterType, with: :apply_filter
+      option :order, type: Types::PlayerTypes::PlayerOrderType, default: {order_by: "CREATED_AT", order: "DESC"}, with: :apply_order
       option :first, type: Int, default: 100, with: :apply_first
       option :skip, type: Int, default: 0, with: :apply_skip
 
       description "Returns a list of players"
 
-      type [Types::ObjectTypes::PlayerTypes::PlayerType], null: true
+      type [Types::PlayerTypes::PlayerType], null: true
 
       def apply_order(scope, value)
         scope = scope.order(value[:order_by].downcase.to_sym => value[:order].downcase.to_sym) if !value[:order].nil? and !value[:order_by].nil?

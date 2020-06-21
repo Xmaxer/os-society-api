@@ -1,7 +1,7 @@
 module Types
   class QueryType < Types::BaseObject
-    field :is_authenticated, resolver: Resolvers::AuthResolvers::AuthenticatedResolver
-    field :players, resolver: Resolvers::PlayerResolvers::PlayersResolver
-    field :total_players, resolver: Resolvers::PlayerResolvers::PlayersCountResolver
+    field :isAuthenticated, resolver: Resolvers::AuthResolvers::Authenticated
+    field :players, resolver: Resolvers::PlayerResolvers::Players
+    field :totalPlayers, resolver: Resolvers::PlayerResolvers::PlayersCount
   end
 end
