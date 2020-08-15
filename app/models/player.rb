@@ -1,6 +1,8 @@
 class Player < ApplicationRecord
   before_save :default_values
 
+  has_many :competition_records
+
   validate :validate_date, :check_previous_names
 
   validates :username, length: {in: 1..Constants::MAX_USERNAME_LENGTH, too_long: Constants::Errors::PLAYER_USERNAME_TOO_LONG_ERROR[:message], too_short: Constants::Errors::PLAYER_USERNAME_TOO_SHORT_ERROR[:message]}, presence: {message: Constants::Errors::PLAYER_USERNAME_NOT_PRESENT_ERROR[:message]}, format: {with: /\A([a-zA-Z0-9\-_]+\s)*[a-zA-Z0-9\-_]+\Z/i, message: Constants::Errors::PLAYER_USERNAME_NOT_VALID_ERROR[:message]}, uniqueness: {message: Constants::Errors::PLAYER_USERNAME_ALREADY_EXISTS_ERROR[:message], case_sensitive: false}

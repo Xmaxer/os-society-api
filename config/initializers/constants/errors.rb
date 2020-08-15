@@ -24,6 +24,8 @@ module Constants
     AUTHENTICATION_USERNAME_INVALID_ERROR = {code: 40, message: "Invalid username"}
     AUTHENTICATION_PASSWORD_INVALID_ERROR = {code: 41, message: "Invalid password"}
     NOT_AUTHENTICATED_ERROR = {code: -1, message: "Not authenticated"}
+    COMPETITION_DOES_NOT_EXIST_ERROR = {code: 50, message: "Specified competition does not exist"}
+
 
   end
 end

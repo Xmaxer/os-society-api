@@ -1,6 +1,6 @@
 class User < ApplicationRecord
   has_secure_password
-
+  has_many :payouts, foreign_key: 'paid_by_id'
   attr_accessor :current_token
   before_create :create_secret_key
 

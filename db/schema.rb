@@ -10,10 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_10_091045) do
+ActiveRecord::Schema.define(version: 2020_08_15_145840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "competition_records", force: :cascade do |t|
+    t.bigint "player_id"
+    t.bigint "xp", null: false
+    t.integer "position", null: false
+    t.bigint "competition_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["competition_id"], name: "index_competition_records_on_competition_id"
+    t.index ["player_id"], name: "index_competition_records_on_player_id"
+    t.index ["position", "competition_id"], name: "index_competition_records_on_position_and_competition_id", unique: true
+  end
+
+  create_table "competitions", force: :cascade do |t|
+    t.string "external_link"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "payouts", force: :cascade do |t|
+    t.bigint "paid_by_id", null: false
+    t.integer "amount", null: false
+    t.bigint "competition_record_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["competition_record_id"], name: "index_payouts_on_competition_record_id"
+    t.index ["paid_by_id"], name: "index_payouts_on_paid_by_id"
+  end
 
   create_table "players", force: :cascade do |t|
     t.string "username", limit: 20, null: false
@@ -37,4 +65,8 @@ ActiveRecord::Schema.define(version: 2020_06_10_091045) do
     t.index ["username"], name: "index_users_on_username", unique: true
   end
 
+  add_foreign_key "competition_records", "competitions"
+  add_foreign_key "competition_records", "players"
+  add_foreign_key "payouts", "competition_records"
+  add_foreign_key "payouts", "users", column: "paid_by_id"
 end
