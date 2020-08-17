@@ -25,6 +25,8 @@ module Constants
     AUTHENTICATION_PASSWORD_INVALID_ERROR = {code: 41, message: "Invalid password"}
     NOT_AUTHENTICATED_ERROR = {code: -1, message: "Not authenticated"}
     COMPETITION_DOES_NOT_EXIST_ERROR = {code: 50, message: "Specified competition does not exist"}
+    COMPETITION_RECORD_DOES_NOT_EXIST_ERROR = {code: 51, message: "Specified competition record does not exist"}
+    PAYOUT_DOES_NOT_EXIST_ERROR = {code: 52, message: "Specified competition record does not exist"}
 
 
   end

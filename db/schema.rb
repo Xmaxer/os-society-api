@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 2020_08_15_145840) do
   enable_extension "plpgsql"
 
   create_table "competition_records", force: :cascade do |t|
-    t.bigint "player_id"
+    t.bigint "player_id", null: false
     t.bigint "xp", null: false
     t.integer "position", null: false
     t.bigint "competition_id", null: false
