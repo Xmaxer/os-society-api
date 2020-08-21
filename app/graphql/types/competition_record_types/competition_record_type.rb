@@ -6,6 +6,7 @@ module Types
       field :xp, GraphQL::Types::BigInt, null: false, description: "The XP gained"
       field :player, Types::PlayerTypes::PlayerType, null: false, description: "The associated player"
       field :position, Integer, null: false, description: "The ranking within the competition"
+      field :payout, resolver: Resolvers::PayoutResolvers::Payout
     end
   end
 end

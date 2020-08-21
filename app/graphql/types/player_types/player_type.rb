@@ -10,6 +10,7 @@ module Types
         field :previous_names, [String], null: true, description: "Any previous names this player had"
         field :created_at, GraphQL::Types::ISO8601DateTime, null: false, description: "The date this player record was created"
         field :updated_at, GraphQL::Types::ISO8601DateTime, null: false, description: "The date this player record was updated"
+        field :competition_records, [Types::CompetitionRecordTypes::CompetitionRecordType], resolver: Resolvers::CompetitionRecordResolvers::CompetitionRecords
       end
     end
 end
