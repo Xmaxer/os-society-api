@@ -3,8 +3,8 @@ module Types
     field :deletePlayer, mutation: Mutations::PlayerMutations::DeletePlayer
     field :createPlayer, mutation: Mutations::PlayerMutations::CreatePlayer
     field :updatePlayer, mutation: Mutations::PlayerMutations::UpdatePlayer
-    field :login, mutation: Mutations::AuthMutations::LoginMutation
-    field :logout, mutation: Mutations::AuthMutations::LogoutMutation
+    field :login, mutation: Mutations::AuthMutations::Login
+    field :logout, mutation: Mutations::AuthMutations::Logout
     field :updateUser, mutation: Mutations::UserMutations::UpdateUser
     field :createCompetition, mutation: Mutations::CompetitionMutations::CreateCompetition
     field :updateCompetition, mutation: Mutations::CompetitionMutations::UpdateCompetition

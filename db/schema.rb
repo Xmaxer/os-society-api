@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_08_15_145840) do
   end
 
   create_table "competitions", force: :cascade do |t|
-    t.string "external_link"
+    t.string "external_url"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_08_15_145840) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["competition_record_id"], name: "index_payouts_on_competition_record_id"
+    t.index ["competition_record_id"], name: "unique_index_payouts_on_competition_record_id", unique: true
     t.index ["paid_by_id"], name: "index_payouts_on_paid_by_id"
   end
 

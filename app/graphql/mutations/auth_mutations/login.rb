@@ -1,6 +1,6 @@
 module Mutations
   module AuthMutations
-    class LoginMutation < BaseMutation
+    class Login < BaseMutation
 
       description "Login with valid credentials, returns a valid token if successful."
 

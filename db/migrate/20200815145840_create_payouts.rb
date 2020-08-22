@@ -7,5 +7,7 @@ class CreatePayouts < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
+
+    add_index :payouts, :competition_record_id, unique: true, name: 'unique_index_payouts_on_competition_record_id'
   end
 end

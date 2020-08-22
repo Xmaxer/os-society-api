@@ -7,5 +7,11 @@
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/os_society_api_development</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="os_society_api_test@localhost" uuid="8610d444-ca0a-47e1-9457-518b2d7f187a">
+      <driver-ref>postgresql</driver-ref>
+      <synchronize>true</synchronize>
+      <jdbc-driver>org.postgresql.Driver</jdbc-driver>
+      <jdbc-url>jdbc:postgresql://localhost:5432/os_society_api_test</jdbc-url>
+    </data-source>
   </component>
 </project>
