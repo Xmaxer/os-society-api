@@ -9,7 +9,7 @@ module Mutations
       def resolve(attributes:, id:)
         competition = competition.find_by(id: id)
 
-        if competition.update_attributes(attributes.to_h)
+        if competition.update(attributes.to_h)
           {competition: competition}
         else
           model_errors(competition)

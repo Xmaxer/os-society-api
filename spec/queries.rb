@@ -16,4 +16,33 @@ def login_query(username, password)
   }
 end
 
+def logout_query
+  {
+      query: <<~GQL,
+                    mutation {
+          logout(input: {}) {
+            success
+          }
+        }
+      GQL
+  }
+end
+
+def reset_password_query(id, password)
+  {
+      query: <<~GQL,
+              mutation User($id: ID!, $password: String!){
+          updateUser(input: {attributes: {password: $password}, id: $id}) {
+            user {
+              id
+              username
+              resetPassword
+            }
+          }
+        }
+      GQL
+      variables: {password: password, id: id}
+  }
+end
+
 

@@ -15,7 +15,7 @@ module Mutations
 
         attributes = attributes.to_h
         attributes[:reset_password] = false
-        if user.update_attributes(attributes.to_h)
+        if user.update(attributes.to_h)
           {user: user}
         else
           model_errors(user)

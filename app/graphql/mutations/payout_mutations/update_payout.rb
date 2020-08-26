@@ -9,7 +9,7 @@ module Mutations
       def resolve(attributes:, id:)
         payout = Payout.find_by(id: id)
 
-        if payout.update_attributes(attributes.to_h)
+        if payout.update(attributes.to_h)
           {payout: payout}
         else
           model_errors(payout)

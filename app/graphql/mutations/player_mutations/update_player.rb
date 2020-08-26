@@ -9,7 +9,7 @@ module Mutations
       def resolve(attributes:, id:)
         player = Player.find_by(id: id)
 
-        if player.update_attributes(attributes.to_h)
+        if player.update(attributes.to_h)
           {player: player}
         else
           model_errors(player)

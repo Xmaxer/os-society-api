@@ -7,7 +7,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'queries'
 # Add additional requires below this line. Rails is not loaded until this point!
-
+$graphql_url = '/api'
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
 # run as spec files by default. This means that files in spec/support that end
@@ -48,7 +48,31 @@ RSpec.configure do |config|
 
   config.before(:all) {
     p "Cleaning database"
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean
+    DatabaseCleaner.start
+  }
+
+  config.before(:suite) {
+    p "Setting up global user/token"
+    DatabaseCleaner.strategy = :transaction
+    $user = User.create!(username: "test", password: "123456", reset_password: false)
+    $token = Authentication::Authentication.get_encoded_string($user)
+    $headers = {"Authorization": "Bearer " + $token}
+    DatabaseCleaner.start
+  }
+
+  config.after(:each) {
+    DatabaseCleaner.strategy = :truncation, {only: %w[users]}
+    DatabaseCleaner.clean
+  }
+
+  config.after(:suite) {
+    p "Final database cleanup"
+    DatabaseCleaner.strategy = :transaction
+    DatabaseCleaner.clean
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean
   }
+
 end
