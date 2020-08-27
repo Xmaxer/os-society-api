@@ -6,9 +6,9 @@ RSpec.describe Mutations::AuthMutations::Login, type: :request do
     @temp = User.create({username: 'temp', password: "123456"})
   end
 
-  describe "Authentication system" do
-    it "logs in with valid credentials" do
-      post $graphql_url, params: login_query("temp", "123456")
+  describe "when using the login system" do
+    it "can login with valid credentials" do
+      post $graphql_url, params: login_mutation("temp", "123456")
       json_response = JSON.parse(@response.body)
       expect(json_response).to_not be_nil
       expect(json_response["data"]).to_not be_nil
@@ -20,8 +20,8 @@ RSpec.describe Mutations::AuthMutations::Login, type: :request do
       expect(json_response["data"]["login"]["user"]["username"]).to eq(@temp.username)
     end
 
-    it "doesn't login with invalid credentials" do
-      post $graphql_url, params: login_query("temp", "1234567")
+    it "cannot login with invalid credentials" do
+      post $graphql_url, params: login_mutation("temp", "1234567")
       json_response = JSON.parse(@response.body)
       expect(json_response).to_not be_nil
       expect(json_response["data"]).to_not be_nil

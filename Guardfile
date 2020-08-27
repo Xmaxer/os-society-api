@@ -35,6 +35,8 @@ guard :rspec, cmd: "bundle exec rspec", all_on_start: true, all_after_pass: true
   watch(rspec.spec_helper) { rspec.spec_dir }
   watch(rspec.spec_support) { rspec.spec_dir }
   watch(rspec.spec_files)
+  watch('spec/queries.rb') { "spec" }
+  watch(%r{^.*\.rb$}) { "spec" }
 
   # Ruby files
   ruby = dsl.ruby

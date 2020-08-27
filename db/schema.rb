@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 2020_08_15_145840) do
 
   create_table "payouts", force: :cascade do |t|
     t.bigint "paid_by_id", null: false
-    t.integer "amount", null: false
+    t.integer "amount", default: 0, null: false
     t.bigint "competition_record_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

@@ -7,7 +7,8 @@ module Mutations
       argument :attributes, Types::CompetitionTypes::CompetitionInput, required: true
 
       def resolve(attributes:, id:)
-        competition = competition.find_by(id: id)
+        competition = Competition.find_by(id: id)
+        raise Exceptions::ExceptionHandler.to_graphql_execution_error(Constants::Errors::COMPETITION_DOES_NOT_EXIST_ERROR) if competition.nil?
 
         if competition.update(attributes.to_h)
           {competition: competition}

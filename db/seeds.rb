@@ -34,6 +34,7 @@ if Rails.env == 'development'
     end)
   end
 
+  p "Total players: #{players.size}"
   # User creation
   user = User.find_or_create_by(username: 'xmax') do |user|
     user.password = '123456'

@@ -63,7 +63,7 @@ RSpec.configure do |config|
   }
 
   config.after(:each) {
-    DatabaseCleaner.strategy = :truncation, {only: %w[users]}
+    DatabaseCleaner.strategy = :truncation, {except: %w[users]}
     DatabaseCleaner.clean
   }
 
@@ -74,5 +74,6 @@ RSpec.configure do |config|
     DatabaseCleaner.strategy = :truncation
     DatabaseCleaner.clean
   }
+
 
 end

@@ -8,7 +8,7 @@ module Resolvers
 
       def initialize(**args)
         raise Exceptions::ExceptionHandler.to_graphql_execution_error(Constants::Errors::NOT_AUTHENTICATED_ERROR) unless args[:context][:current_user]
-        super(args)
+        super(**args)
       end
 
       scope do

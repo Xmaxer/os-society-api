@@ -1,4 +1,4 @@
-def login_query(username, password)
+def login_mutation(username, password)
   {
       query: <<~GQL,
             mutation Login($username: String!, $password: String!){
@@ -16,7 +16,7 @@ def login_query(username, password)
   }
 end
 
-def logout_query
+def logout_mutation
   {
       query: <<~GQL,
                     mutation {
@@ -28,7 +28,7 @@ def logout_query
   }
 end
 
-def reset_password_query(id, password)
+def reset_password_mutation(id, password)
   {
       query: <<~GQL,
               mutation User($id: ID!, $password: String!){
@@ -45,4 +45,101 @@ def reset_password_query(id, password)
   }
 end
 
+def create_competition_mutation(external_url = nil)
+  {
+      query: <<~GQL,
+                      mutation CreateCompetition($externalUrl: String){
+          createCompetition(input: {attributes: {externalUrl: $externalUrl}}){
+            competition {
+                  competitionRecords {
+                    id
+                    xp
+                    position
+                    payout {
+                      id
+                      amount
+                      user {
+                        id
+                        username
+                      }
+                    }
+                    player {
+                      id
+                      username
+                    }
+                  }
+            externalUrl
+            id
+            }
+          }
+        }
+      GQL
+      variables: {externalUrl: external_url}
+  }
+end
 
+def update_competition_mutation(external_url = nil, id)
+  {
+      query: <<~GQL,
+                            mutation UpdateCompetition($externalUrl: String, $id: ID!){
+        updateCompetition(input: {attributes: {externalUrl: $externalUrl}, id: $id}){
+          competition {
+            competitionRecords {
+                  id
+                  xp
+                  position
+                  payout {
+                    id
+                    amount
+                    user {
+                      id
+                      username
+                    }
+                  }
+                  player {
+                    id
+                    username
+                  }
+                }
+          externalUrl
+          id
+          }
+          }
+        }
+      GQL
+      variables: {externalUrl: external_url, id: id}
+  }
+end
+
+def delete_competition_mutation(id)
+  {
+      query: <<~GQL,
+                                 mutation DeleteCompetition($id: ID!){
+          deleteCompetition(input: {id: $id}){
+            competition {
+                    competitionRecords {
+                    id
+                    xp
+                    position
+                    payout {
+                      id
+                      amount
+                      user {
+                        id
+                        username
+                      }
+                    }
+                    player {
+                      id
+                      username
+                    }
+                  }
+            externalUrl
+            id
+            }
+          }
+        }
+      GQL
+      variables: {id: id}
+  }
+end

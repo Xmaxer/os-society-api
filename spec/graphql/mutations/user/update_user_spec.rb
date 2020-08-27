@@ -7,13 +7,13 @@ RSpec.describe Mutations::UserMutations::UpdateUser, type: :request do
     users.destroy_all
   end
 
-  describe "Password reset" do
+  describe "when trying to reset a password" do
 
     it "can reset password when true" do
       temp = User.create({username: 'temp', password: "123456"})
       token = Authentication::Authentication.get_encoded_string(temp)
       headers = {"Authorization": "Bearer " + token}
-      post $graphql_url, params: reset_password_query(temp.id, "1234567"), headers: headers
+      post $graphql_url, params: reset_password_mutation(temp.id, "1234567"), headers: headers
       json_response = JSON.parse(@response.body)
       expect(json_response).to_not be_nil
       expect(json_response["data"]["updateUser"]["user"]["resetPassword"]).to be(false)
@@ -21,7 +21,7 @@ RSpec.describe Mutations::UserMutations::UpdateUser, type: :request do
 
     it "cannot reset password of another user" do
       temp = User.create({username: 'temp2', password: "123456"})
-      post $graphql_url, params: reset_password_query(temp.id, "1234567"), headers: $headers
+      post $graphql_url, params: reset_password_mutation(temp.id, "1234567"), headers: $headers
       json_response = JSON.parse(@response.body)
       expect(json_response).to_not be_nil
       expect(json_response["errors"]).to_not be_nil
@@ -31,7 +31,7 @@ RSpec.describe Mutations::UserMutations::UpdateUser, type: :request do
       temp = User.create({username: 'temp3', password: "123456", reset_password: false})
       token = Authentication::Authentication.get_encoded_string(temp)
       headers = {"Authorization": "Bearer " + token}
-      post $graphql_url, params: reset_password_query(temp.id, "1234567"), headers: headers
+      post $graphql_url, params: reset_password_mutation(temp.id, "1234567"), headers: headers
       json_response = JSON.parse(@response.body)
       expect(json_response).to_not be_nil
       expect(json_response["errors"]).to_not be_nil
