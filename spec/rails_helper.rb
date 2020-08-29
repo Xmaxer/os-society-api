@@ -47,14 +47,12 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
 
   config.before(:all) {
-    p "Cleaning database"
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean
     DatabaseCleaner.start
   }
 
   config.before(:suite) {
-    p "Setting up global user/token"
     DatabaseCleaner.strategy = :transaction
     $user = User.create!(username: "test", password: "123456", reset_password: false)
     $token = Authentication::Authentication.get_encoded_string($user)
@@ -68,7 +66,6 @@ RSpec.configure do |config|
   }
 
   config.after(:suite) {
-    p "Final database cleanup"
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean
     DatabaseCleaner.strategy = :truncation
