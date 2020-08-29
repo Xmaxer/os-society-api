@@ -176,7 +176,7 @@ end
 def update_competition_record_mutation(id, xp, position, player_id, competition_id)
   {
       query: <<~GQL,
-                                                 mutation CompetitionRecord($xp: BigInt!, $position: BigInt!, $playerId: ID!, $competitionId: ID!, $id: ID!{
+                                                                 mutation CompetitionRecord($xp: BigInt!, $position: BigInt!, $playerId: ID!, $competitionId: ID!, $id: ID!){
           updateCompetitionRecord(input: {id: $id ,attributes: {xp: $xp, position: $position, playerId: $playerId, competitionId: $competitionId}}){
             competitionRecord {
               id

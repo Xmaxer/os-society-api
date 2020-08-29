@@ -10,5 +10,7 @@ class CreateCompetitionRecords < ActiveRecord::Migration[6.0]
     end
 
     add_index :competition_records, [:position, :competition_id], unique: true
+    add_index :competition_records, [:competition_id, :player_id], unique: true
+
   end
 end

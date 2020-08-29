@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 2020_08_15_145840) do
     t.bigint "competition_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["competition_id", "player_id"], name: "index_competition_records_on_competition_id_and_player_id", unique: true
     t.index ["competition_id"], name: "index_competition_records_on_competition_id"
     t.index ["player_id"], name: "index_competition_records_on_player_id"
     t.index ["position", "competition_id"], name: "index_competition_records_on_position_and_competition_id", unique: true
