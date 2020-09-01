@@ -3,4 +3,5 @@ class Payout < ApplicationRecord
   belongs_to :competition_record
 
   validates :amount, numericality: {greater_than_or_equal_to: 0}, allow_nil: true
+  validates :competition_record_id, uniqueness: true
 end

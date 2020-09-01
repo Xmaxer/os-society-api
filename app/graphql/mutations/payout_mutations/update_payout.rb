@@ -8,6 +8,7 @@ module Mutations
 
       def resolve(attributes:, id:)
         payout = Payout.find_by(id: id)
+        raise Exceptions::ExceptionHandler.to_graphql_execution_error(Constants::Errors::PAYOUT_DOES_NOT_EXIST_ERROR) if payout.nil?
 
         if payout.update(attributes.to_h)
           {payout: payout}

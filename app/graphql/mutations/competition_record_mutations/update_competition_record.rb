@@ -8,6 +8,7 @@ module Mutations
 
       def resolve(attributes:, id:)
         competition_record = CompetitionRecord.find_by(id: id)
+        raise Exceptions::ExceptionHandler.to_graphql_execution_error(Constants::Errors::COMPETITION_RECORD_DOES_NOT_EXIST_ERROR) if competition_record.nil?
 
         if competition_record.update(attributes.to_h)
           {competition_record: competition_record}

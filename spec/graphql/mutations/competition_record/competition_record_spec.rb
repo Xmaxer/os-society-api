@@ -1,4 +1,4 @@
-RSpec.describe Mutations::CompetitionMutations, type: :request do
+RSpec.describe Mutations::CompetitionRecordMutations, type: :request do
 
   before(:each) do
     allow_any_instance_of(GraphqlController).to receive(:current_user).and_return($user)
