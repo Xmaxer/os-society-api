@@ -12,17 +12,24 @@ module Resolvers
       end
 
       scope do
-        object.competition_records
+        object ? object.competition_records : CompetitionRecords.all
       end
 
       option :filter, type: Types::CompetitionRecordTypes::CompetitionRecordFilterType, with: :apply_filter
       option :order, type: Types::CompetitionRecordTypes::CompetitionRecordOrderType, default: {order_by: "POSITION", order: "ASC"}, with: :apply_order
       option :first, type: Int, default: 3, with: :apply_first
       option :skip, type: Int, default: 0, with: :apply_skip
+      option :competition_id, type: ID, with: :by_competition
 
       description "Returns a list of competition records belonging to the object"
 
       type [Types::CompetitionRecordTypes::CompetitionRecordType], null: true
+
+      def by_competition(scope, value)
+        if !object and value[:competition_id] then
+          scope.where(competition_id: value[:competition_id])
+        end
+      end
 
       def apply_order(scope, value)
         scope = scope.order(value[:order_by].downcase.to_sym => value[:order].downcase.to_sym) if !value[:order].nil? and !value[:order_by].nil?

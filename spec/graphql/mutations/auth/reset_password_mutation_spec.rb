@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Mutations::UserMutations::UpdateUser, type: :request do
+RSpec.describe Mutations::AuthMutations::ResetPasswordMutation, type: :request do
 
   after(:all) do
     users = User.where("username like '%temp%'")

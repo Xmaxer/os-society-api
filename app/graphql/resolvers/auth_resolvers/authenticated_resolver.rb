@@ -1,6 +1,6 @@
 module Resolvers
   module AuthResolvers
-    class Authenticated < Resolvers::BaseResolver
+    class AuthenticatedResolver < Resolvers::BaseResolver
 
       description "Checks whether the login you're authenticated or not"
 

@@ -1,6 +1,6 @@
 module Resolvers
   module PayoutResolvers
-    class Payout < Resolvers::BaseResolverAuthenticated
+    class PayoutResolver < Resolvers::BaseResolverAuthenticated
 
       description "Gets a specific payout for the competition record"
 

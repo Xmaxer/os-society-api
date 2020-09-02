@@ -1,6 +1,6 @@
 module Resolvers
   module PlayerResolvers
-    class Players < Resolvers::BaseResolverAuthenticated
+    class PlayersResolver < Resolvers::BaseResolverAuthenticated
 
       require 'search_object'
       require 'search_object/plugin/graphql'

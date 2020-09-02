@@ -1,6 +1,6 @@
 module Resolvers
   module CompetitionResolvers
-    class Competitions < Resolvers::BaseResolverAuthenticated
+    class CompetitionsResolver < Resolvers::BaseResolverAuthenticated
 
       require 'search_object'
       require 'search_object/plugin/graphql'

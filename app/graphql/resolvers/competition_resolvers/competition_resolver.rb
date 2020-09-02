@@ -1,6 +1,6 @@
 module Resolvers
   module CompetitionResolvers
-    class Competition < Resolvers::BaseResolverAuthenticated
+    class CompetitionResolver < Resolvers::BaseResolverAuthenticated
 
       description "Gets a specific competition object"
 

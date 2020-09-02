@@ -1,6 +1,6 @@
 module Mutations
-  module UserMutations
-    class UpdateUser < Mutations::BaseMutationAuthenticated
+  module AuthMutations
+    class ResetPasswordMutation < Mutations::BaseMutationAuthenticated
       field :user, Types::UserTypes::UserType, null: true
 
       argument :id, ID, required: true

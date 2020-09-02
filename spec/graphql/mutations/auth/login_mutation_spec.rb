@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Mutations::AuthMutations::Login, type: :request do
+RSpec.describe Mutations::AuthMutations::LoginMutation, type: :request do
 
   before(:all) do
     @temp = User.create({username: 'temp', password: "123456"})

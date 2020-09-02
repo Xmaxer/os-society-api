@@ -1,6 +1,6 @@
 module Mutations
   module CompetitionMutations
-    class DeleteCompetition < Mutations::BaseMutationAuthenticated
+    class DeleteCompetitionMutation < Mutations::BaseMutationAuthenticated
       field :competition, Types::CompetitionTypes::CompetitionType, null: true
 
       argument :id, ID, required: true

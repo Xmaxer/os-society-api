@@ -1,6 +1,6 @@
 module Mutations
   module AuthMutations
-    class Logout < Mutations::BaseMutationAuthenticated
+    class LogoutMutation < Mutations::BaseMutationAuthenticated
       description "Logout of the current session (Invalidates token)"
       field :success, Boolean, null: false, description: "True if logged out of current session"
 

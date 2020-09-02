@@ -1,6 +1,6 @@
 module Resolvers
   module PayoutResolvers
-    class Payouts < Resolvers::BaseResolverAuthenticated
+    class PayoutsResolver < Resolvers::BaseResolverAuthenticated
 
       require 'search_object'
       require 'search_object/plugin/graphql'

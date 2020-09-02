@@ -1,6 +1,6 @@
 module Mutations
   module CompetitionMutations
-    class UpdateCompetition < Mutations::BaseMutationAuthenticated
+    class UpdateCompetitionMutation < Mutations::BaseMutationAuthenticated
       field :competition, Types::CompetitionTypes::CompetitionType, null: true
 
       argument :id, ID, required: true

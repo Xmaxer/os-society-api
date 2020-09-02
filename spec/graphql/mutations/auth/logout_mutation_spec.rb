@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Mutations::AuthMutations::Logout, type: :request do
+RSpec.describe Mutations::AuthMutations::LogoutMutation, type: :request do
 
   describe "when using the logout system" do
 

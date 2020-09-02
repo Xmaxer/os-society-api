@@ -1,6 +1,6 @@
 module Mutations
   module CompetitionRecordMutations
-    class DeleteCompetitionRecord < Mutations::BaseMutationAuthenticated
+    class DeleteCompetitionRecordMutation < Mutations::BaseMutationAuthenticated
       field :competition_record, Types::CompetitionRecordTypes::CompetitionRecordType, null: true
 
       argument :id, ID, required: true
