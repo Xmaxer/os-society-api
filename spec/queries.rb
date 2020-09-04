@@ -448,7 +448,7 @@ def delete_player_mutation(id)
   }
 end
 
-def players_query(order, order_by, username_contains, previous_name_contains, username_or_previous_name_contains, rank_contains, start_join_date, end_join_date, first, skip)
+def players_query(**args)
   {
       query: <<~GQL,
         query Players(
@@ -488,14 +488,14 @@ def players_query(order, order_by, username_contains, previous_name_contains, us
           totalPlayers
         }
       GQL
-      variables: {order: order, orderBy: order_by, usernameContains: username_contains, previousNameContains: previous_name_contains, usernameOrPreviousNameContains: username_or_previous_name_contains, rankContains: rank_contains, startJoinDate: start_join_date, endJoinDate: end_join_date, first: first, skip: skip}
+      variables: args
   }
 end
 
 def competitions_query(**args)
   {
       query: <<~GQL,
-        query Competitions(
+                query Competitions(
           $externalUrlContains: String
           $order: OrderEnum
           $orderBy: CompetitionOrderEnum
@@ -527,6 +527,7 @@ def competitions_query(**args)
             }
             externalUrl
             id
+            createdAt
           }
         }
       GQL
@@ -534,12 +535,14 @@ def competitions_query(**args)
   }
 end
 
-def competition_records_query(order, order_by, start_position, end_position, first, skip)
+def competition_records_query(**args)
   {
       query: <<~GQL,
-                query CompetitionRecords(
+                        query CompetitionRecords(
           $startPosition: Int
           $endPosition: Int
+          $startXp: Int
+          $endXp: Int
           $first: Int
           $skip: Int
           $competitionId: ID
@@ -547,7 +550,12 @@ def competition_records_query(order, order_by, start_position, end_position, fir
           $orderBy: CompetitionRecordOrderEnum
         ) {
           competitionRecords(
-            filter: { startPosition: $startPosition, endPosition: $endPosition }
+            filter: {
+              startPosition: $startPosition
+              endPosition: $endPosition
+              startXp: $startXp
+              endXp: $endXp
+            }
             order: { order: $order, orderBy: $orderBy }
             first: $first
             skip: $skip
@@ -571,7 +579,7 @@ def competition_records_query(order, order_by, start_position, end_position, fir
           }
         }
       GQL
-      variables: {order: order, order_by: order_by, startPosition: start_position, endPosition: end_position, first: first, skip: skip}
+      variables: args
   }
 end
 

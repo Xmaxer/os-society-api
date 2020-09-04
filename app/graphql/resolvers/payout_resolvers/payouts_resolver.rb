@@ -30,8 +30,8 @@ module Resolvers
       end
 
       def apply_filter(scope, value)
-        scope = scope.where('amount < ', value[:start_amount]) if value[:start_amount]
-        scope = scope.where('amount > ', value[:end_amount]) if value[:end_amount]
+        scope = scope.where('amount >= ?', value[:start_amount]) if value[:start_amount]
+        scope = scope.where('amount <= ?', value[:end_amount]) if value[:end_amount]
         scope
       end
 

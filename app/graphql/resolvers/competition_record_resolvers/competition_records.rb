@@ -12,7 +12,7 @@ module Resolvers
       end
 
       scope do
-        object ? object.competition_records : CompetitionRecords.all
+        object ? object.competition_records : CompetitionRecord.all
       end
 
       option :filter, type: Types::CompetitionRecordTypes::CompetitionRecordFilterType, with: :apply_filter
@@ -26,8 +26,8 @@ module Resolvers
       type [Types::CompetitionRecordTypes::CompetitionRecordType], null: true
 
       def by_competition(scope, value)
-        if !object and value[:competition_id] then
-          scope.where(competition_id: value[:competition_id])
+        if !object and !value.nil?
+          scope.where(competition_id: value)
         end
       end
 
@@ -37,8 +37,10 @@ module Resolvers
       end
 
       def apply_filter(scope, value)
-        scope = scope.where('position < ?', value[:start_position]) if value[:start_position]
-        scope = scope.where('position > ?', value[:end_position]) if value[:end_position]
+        scope = scope.where('position >= ?', value[:start_position]) if value[:start_position]
+        scope = scope.where('position <= ?', value[:end_position]) if value[:end_position]
+        scope = scope.where('xp >= ?', value[:start_xp]) if value[:start_xp]
+        scope = scope.where('xp <= ?', value[:end_xp]) if value[:end_xp]
         scope
       end
 
