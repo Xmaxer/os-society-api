@@ -17,73 +17,73 @@ RSpec.describe Resolvers::CompetitionRecordResolvers, type: :request do
     it "can get a list of competition records belonging to a competition" do
       post $graphql_url, params: competition_records_query(competitionId: @competition.id)
       json_response = JSON.parse(@response.body)
-      competitions = json_response["data"]["competitionRecords"]
-      expect(competitions.size).to eq(3)
+      competition_records = json_response["data"]["competitionRecords"]
+      expect(competition_records.size).to eq(3)
     end
 
     it "can get a list of competition records when empty" do
       CompetitionRecord.destroy_all
       post $graphql_url, params: competition_records_query(competitionId: @competition.id)
       json_response = JSON.parse(@response.body)
-      competitions = json_response["data"]["competitionRecords"]
-      expect(competitions.size).to eq(0)
+      competition_records = json_response["data"]["competitionRecords"]
+      expect(competition_records.size).to eq(0)
     end
 
     it "can get a specified number of competition records per page" do
       post $graphql_url, params: competition_records_query(competitionId: @competition.id, first: 5), as: :json
       json_response = JSON.parse(@response.body)
-      competitions = json_response["data"]["competitionRecords"]
-      expect(competitions.size).to eq(5)
+      competition_records = json_response["data"]["competitionRecords"]
+      expect(competition_records.size).to eq(5)
     end
 
     it "can filter by position" do
       post $graphql_url, params: competition_records_query(competitionId: @competition.id, first: 10, startPosition: 3, endPosition: 7), as: :json
       json_response = JSON.parse(@response.body)
-      competitions = json_response["data"]["competitionRecords"]
-      expect(competitions.size).to eq(5)
+      competition_records = json_response["data"]["competitionRecords"]
+      expect(competition_records.size).to eq(5)
     end
 
     it "can filter by xp" do
       post $graphql_url, params: competition_records_query(competitionId: @competition.id, first: 10, startXp: 95, endXp: 98), as: :json
       json_response = JSON.parse(@response.body)
-      competitions = json_response["data"]["competitionRecords"]
-      expect(competitions.size).to eq(4)
+      competition_records = json_response["data"]["competitionRecords"]
+      expect(competition_records.size).to eq(4)
     end
 
     it "can filter by xp and position" do
       post $graphql_url, params: competition_records_query(competitionId: @competition.id, first: 10, startXp: 93, endXp: 98, startPosition: 1, endPosition: 4), as: :json
       json_response = JSON.parse(@response.body)
-      competitions = json_response["data"]["competitionRecords"]
-      expect(competitions.size).to eq(3)
+      competition_records = json_response["data"]["competitionRecords"]
+      expect(competition_records.size).to eq(3)
     end
 
     it "can order by xp" do
       post $graphql_url, params: competition_records_query(competitionId: @competition.id, first: 10, orderBy: 'XP', order: 'ASC'), as: :json
       json_response = JSON.parse(@response.body)
-      competitions = json_response["data"]["competitionRecords"]
-      competitions.each_with_index do |competition_record, index|
-        expect(competitions[index]["xp"].to_i).to be < competitions[index + 1]["xp"].to_i if index < competitions.size - 1
+      competition_records = json_response["data"]["competitionRecords"]
+      competition_records.each_with_index do |competition_record, index|
+        expect(competition_records[index]["xp"].to_i).to be < competition_records[index + 1]["xp"].to_i if index < competition_records.size - 1
       end
       post $graphql_url, params: competition_records_query(competitionId: @competition.id, first: 10, orderBy: 'XP', order: 'DESC'), as: :json
       json_response = JSON.parse(@response.body)
-      competitions = json_response["data"]["competitionRecords"]
-      competitions.each_with_index do |competition_record, index|
-        expect(competitions[index]["xp"].to_i).to be > competitions[index + 1]["xp"].to_i if index < competitions.size - 1
+      competition_records = json_response["data"]["competitionRecords"]
+      competition_records.each_with_index do |competition_record, index|
+        expect(competition_records[index]["xp"].to_i).to be > competition_records[index + 1]["xp"].to_i if index < competition_records.size - 1
       end
     end
 
     it "can order by position" do
       post $graphql_url, params: competition_records_query(competitionId: @competition.id, first: 10, orderBy: 'POSITION', order: 'ASC'), as: :json
       json_response = JSON.parse(@response.body)
-      competitions = json_response["data"]["competitionRecords"]
-      competitions.each_with_index do |competition_record, index|
-        expect(competitions[index]["position"].to_i).to be < competitions[index + 1]["position"].to_i if index < competitions.size - 1
+      competition_records = json_response["data"]["competitionRecords"]
+      competition_records.each_with_index do |competition_record, index|
+        expect(competition_records[index]["position"].to_i).to be < competition_records[index + 1]["position"].to_i if index < competition_records.size - 1
       end
       post $graphql_url, params: competition_records_query(competitionId: @competition.id, first: 10, orderBy: 'POSITION', order: 'DESC'), as: :json
       json_response = JSON.parse(@response.body)
-      competitions = json_response["data"]["competitionRecords"]
-      competitions.each_with_index do |competition_record, index|
-        expect(competitions[index]["position"].to_i).to be > competitions[index + 1]["position"].to_i if index < competitions.size - 1
+      competition_records = json_response["data"]["competitionRecords"]
+      competition_records.each_with_index do |competition_record, index|
+        expect(competition_records[index]["position"].to_i).to be > competition_records[index + 1]["position"].to_i if index < competition_records.size - 1
       end
     end
 
