@@ -1,7 +1,7 @@
 module Mutations
   module AuthMutations
     class ResetPasswordMutation < Mutations::BaseMutationAuthenticated
-      field :user, Types::UserTypes::UserType, null: true
+      field :user, Types::UserTypes::UserType, null: false
 
       argument :id, ID, required: true
       argument :attributes, Types::UserTypes::UserInput, required: true

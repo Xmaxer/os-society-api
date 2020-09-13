@@ -1,7 +1,7 @@
 module Mutations
   module CompetitionMutations
     class CreateCompetitionMutation < Mutations::BaseMutationAuthenticated
-      field :competition, Types::CompetitionTypes::CompetitionType, null: true
+      field :competition, Types::CompetitionTypes::CompetitionType, null: false
 
       argument :attributes, Types::CompetitionTypes::CompetitionInput, required: true
 

@@ -7,7 +7,7 @@ module Types
         field :join_date, GraphQL::Types::ISO8601DateTime, null: false, description: "A valid non-future join date"
         field :rank, Integer, null: false, description: "A valid rank number"
         field :comment, String, null: true, description: "Optional extra comments"
-        field :previous_names, [String], null: true, description: "Any previous names this player had"
+        field :previous_names, [String], null: false, description: "Any previous names this player had"
         field :created_at, GraphQL::Types::ISO8601DateTime, null: false, description: "The date this player record was created"
         field :updated_at, GraphQL::Types::ISO8601DateTime, null: false, description: "The date this player record was updated"
         field :competition_records, [Types::CompetitionRecordTypes::CompetitionRecordType], resolver: Resolvers::CompetitionRecordResolvers::CompetitionRecords

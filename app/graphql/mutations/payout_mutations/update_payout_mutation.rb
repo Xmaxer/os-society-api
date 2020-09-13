@@ -1,7 +1,7 @@
 module Mutations
   module PayoutMutations
     class UpdatePayoutMutation < Mutations::BaseMutationAuthenticated
-      field :payout, Types::PayoutTypes::PayoutType, null: true
+      field :payout, Types::PayoutTypes::PayoutType, null: false
 
       argument :id, ID, required: true
       argument :attributes, Types::PayoutTypes::PayoutInput, required: true

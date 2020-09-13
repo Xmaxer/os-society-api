@@ -22,7 +22,7 @@ module Resolvers
 
       description "Returns a list of payouts"
 
-      type [Types::PayoutTypes::PayoutType], null: true
+      type [Types::PayoutTypes::PayoutType], null: false
 
       def apply_order(scope, value)
         scope = scope.order(value[:order_by].downcase.to_sym => value[:order].downcase.to_sym) if !value[:order].nil? and !value[:order_by].nil?

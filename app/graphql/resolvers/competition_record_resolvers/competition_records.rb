@@ -23,7 +23,7 @@ module Resolvers
 
       description "Returns a list of competition records belonging to the object"
 
-      type [Types::CompetitionRecordTypes::CompetitionRecordType], null: true
+      type [Types::CompetitionRecordTypes::CompetitionRecordType], null: false
 
       def by_competition(scope, value)
         if !object and !value.nil?

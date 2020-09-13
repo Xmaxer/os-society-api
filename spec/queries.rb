@@ -40,7 +40,6 @@ def reset_password_mutation(id, password)
             }
           }
         }
-
       GQL
       variables: {password: password, id: id}
   }
@@ -288,7 +287,6 @@ def create_payout_mutation(amount, paid_by_id, competition_record_id)
             }
           }
         }
-
       GQL
       variables: {amount: amount, paidById: paid_by_id, competitionRecordId: competition_record_id}
   }
@@ -495,7 +493,7 @@ end
 def competitions_query(**args)
   {
       query: <<~GQL,
-                query Competitions(
+        query Competitions(
           $externalUrlContains: String
           $order: OrderEnum
           $orderBy: CompetitionOrderEnum
@@ -538,7 +536,7 @@ end
 def competition_records_query(**args)
   {
       query: <<~GQL,
-                        query CompetitionRecords(
+        query CompetitionRecords(
           $startPosition: Int
           $endPosition: Int
           $startXp: Int

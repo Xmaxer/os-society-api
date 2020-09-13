@@ -1,7 +1,7 @@
 module Mutations
   module PlayerMutations
     class UpdatePlayerMutation < Mutations::BaseMutationAuthenticated
-      field :player, Types::PlayerTypes::PlayerType, null: true
+      field :player, Types::PlayerTypes::PlayerType, null: false
 
       argument :id, ID, required: true
       argument :attributes, Types::PlayerTypes::PlayerInput, required: true

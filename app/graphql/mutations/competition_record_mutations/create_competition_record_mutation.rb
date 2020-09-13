@@ -1,7 +1,7 @@
 module Mutations
   module CompetitionRecordMutations
     class CreateCompetitionRecordMutation < Mutations::BaseMutationAuthenticated
-      field :competition_record, Types::CompetitionRecordTypes::CompetitionRecordType, null: true
+      field :competition_record, Types::CompetitionRecordTypes::CompetitionRecordType, null: false
 
       argument :attributes, Types::CompetitionRecordTypes::CompetitionRecordInput, required: true
 

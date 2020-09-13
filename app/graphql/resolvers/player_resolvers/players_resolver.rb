@@ -24,7 +24,7 @@ module Resolvers
 
       description "Returns a list of players"
 
-      type [Types::PlayerTypes::PlayerType], null: true
+      type [Types::PlayerTypes::PlayerType], null: false
 
       def apply_order(scope, value)
         scope = scope.order(value[:order_by].downcase.to_sym => value[:order].downcase.to_sym) if !value[:order].nil? and !value[:order_by].nil?
@@ -37,8 +37,8 @@ module Resolvers
         scope = scope.where('lower(array_to_string(previous_names, \',\')) LIKE ?', "%#{value[:previous_name_contains].downcase}%") if value[:previous_name_contains]
         scope = scope.where('lower(array_to_string(previous_names, \',\')) LIKE ? OR lower(username) LIKE ?', "%#{value[:username_or_previous_name_contains].downcase}%", "%#{value[:username_or_previous_name_contains].downcase}%") if value[:username_or_previous_name_contains]
         scope = scope.where(rank: value[:rank_contains]) if value[:rank_contains]
-        scope = scope.where('join_date >= ?', value[:start_join_date]) if value[:start_join_date]
-        scope = scope.where('join_date <= ?', value[:end_join_date]) if value[:end_join_date]
+        scope = scope.where('join_date <= ?', value[:start_join_date]) if value[:start_join_date]
+        scope = scope.where('join_date >= ?', value[:end_join_date]) if value[:end_join_date]
         context.scoped_context[:players] = scope
         scope
       end

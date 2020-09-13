@@ -1,7 +1,7 @@
 module Mutations
   module PayoutMutations
     class DeletePayoutMutation < Mutations::BaseMutationAuthenticated
-      field :payout, Types::PayoutTypes::PayoutType, null: true
+      field :payout, Types::PayoutTypes::PayoutType, null: false
 
       argument :id, ID, required: true
 
