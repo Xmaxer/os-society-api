@@ -8,14 +8,16 @@ module Mutations
 
       def resolve(attributes:, id:)
 
+
         raise Exceptions::ExceptionHandler.to_graphql_execution_error(Constants::Errors::USER_CANNOT_EDIT_ANOTHER_ERROR) if id != context[:current_user].id.to_s
 
-        user = User.find(id: id, reset_password: true)
+        user = User.find_by(id: id, reset_password: true)
         raise Exceptions::ExceptionHandler.to_graphql_execution_error(Constants::Errors::USER_DOES_NOT_EXIST_ERROR) if user.nil?
 
+        attributes = attributes.to_h
         attributes[:reset_password] = false
         if user.update_attributes(attributes.to_h)
-          {player: user}
+          {user: user}
         else
           model_errors(user)
           nil

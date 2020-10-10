@@ -7,7 +7,7 @@ module Mutations
       argument :attributes, Types::PlayerTypes::PlayerInput, required: true
 
       def resolve(attributes:, id:)
-        player = Player.find(id)
+        player = Player.find_by(id: id)
 
         if player.update_attributes(attributes.to_h)
           {player: player}
